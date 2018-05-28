@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpPractice.Classes;
 
 namespace CSharpPractice
 {
@@ -12,13 +13,19 @@ namespace CSharpPractice
 
         static void Main(string[] args)
         {
-            var numberOne = 23.45;
 
-            Console.WriteLine(numberTwo);
-            var message = Console.ReadLine();
-            Console.WriteLine(message);
+            double[] numbers = new double[] { 1, 2, 3, 42, 42154 };
+            SimpleMath.Add(numbers);
 
-            Console.WriteLine(SimpleMath.Add(numberOne, numberTwo));
+            BankAccount bankAccount = new BankAccount(1000);
+            Console.WriteLine("Original balance: {0}", bankAccount.Balance);
+            bankAccount.AddToBalance(100);
+            Console.WriteLine("Increased balance: {0}", bankAccount.Balance);
+
+            ChildBackAccount childBackAccount = new ChildBackAccount();
+            Console.WriteLine("\tOriginal child balance: {0}", childBackAccount.Balance);
+            childBackAccount.AddToBalance(10);
+            Console.WriteLine("\tIncreased child balance: {0}", childBackAccount.Balance);
 
             Console.ReadLine();
         }
@@ -30,5 +37,17 @@ namespace CSharpPractice
         {
             return n1 + n2;
         }
+
+        // method overloading
+        public static double Add(double[] numbers)
+        {
+            double result = 0;
+            foreach(double d in numbers)
+            {
+                result += d;
+            }
+            return result;
+        }
+        
     }
 }
